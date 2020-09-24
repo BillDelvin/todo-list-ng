@@ -5,6 +5,7 @@
         <th scope="col">No</th>
         <th scope="col">Day</th>
         <th scope="col">Activities</th>
+        <th scope="col">Action</th>
       </tr>
     </thead>
     <tbody>
@@ -12,6 +13,13 @@
         <th scope="row">{{ i + 1 }}</th>
         <td>{{ todo.day }}</td>
         <td>{{ todo.activities }}</td>
+        <td>
+          <button class="btn btn-secondary" (click)="onUpdate(i)">
+            Update
+          </button>
+          &nbsp;
+          <button class="btn btn-danger" (click)="onDelete(i)">Delete</button>
+        </td>
       </tr>
     </tbody>
   </table>
