@@ -18,4 +18,13 @@ export class TodoService {
     this.todos.push(todo);
     this.todosChange.next(this.todos.slice());
   }
+
+  deleteTodo(id: number) {
+    this.todos.splice(id, 1);
+    this.todosChange.next(this.todos.slice());
+  }
+
+  updateTodo(id: number) {
+    console.log(id);
+  }
 }
