@@ -1,4 +1,5 @@
 import { Injectable } from "@angular/core";
+import { Router } from "@angular/router";
 import { Subject } from "rxjs";
 import { Todos } from "./todo.model";
 
@@ -6,12 +7,16 @@ import { Todos } from "./todo.model";
   providedIn: "root",
 })
 export class TodoService {
-  constructor() {}
+  constructor(private router: Router) {}
   private todos: Todos[] = [];
   todosChange = new Subject<Todos[]>();
 
   getTodos() {
     return this.todos.slice();
+  }
+
+  getTodo(id: number) {
+    return this.todos.find((todo) => todo.id === id);
   }
 
   addTodo(todo: Todos) {
@@ -25,6 +30,6 @@ export class TodoService {
   }
 
   updateTodo(id: number) {
-    console.log(id);
+    this.router.navigate(["/todo/edit", id]);
   }
 }
