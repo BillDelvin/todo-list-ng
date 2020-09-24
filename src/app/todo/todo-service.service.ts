@@ -1,12 +1,21 @@
 import { Injectable } from "@angular/core";
+import { Subject } from "rxjs";
 import { Todos } from "./todo.model";
 
 @Injectable({
   providedIn: "root",
 })
-export class TodoServiceService {
+export class TodoService {
   constructor() {}
-  Todos: Todos[] = [];
+  private todos: Todos[] = [];
+  todosChange = new Subject<Todos[]>();
 
-  addTodo() {}
+  getTodos() {
+    return this.todos.slice();
+  }
+
+  addTodo(todo: Todos) {
+    this.todos.push(todo);
+    this.todosChange.next(this.todos.slice());
+  }
 }
