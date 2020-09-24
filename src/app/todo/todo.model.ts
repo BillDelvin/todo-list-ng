@@ -1,5 +1,5 @@
 export interface Todos {
-  id?: number;
+  id: number;
   day: string;
   activities: string;
 }
