@@ -6,6 +6,10 @@ import { TodoItemComponent } from "./todo/todo-item/todo-item.component";
 const routes: Routes = [
   { path: "", redirectTo: "todo", pathMatch: "full" },
   { path: "todo", component: TodoInputComponent },
+  {
+    path: "todo/edit/:id",
+    component: TodoInputComponent,
+  },
   { path: "list-todo", component: TodoItemComponent },
 ];
 
