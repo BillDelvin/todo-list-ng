@@ -12,5 +12,11 @@
       required
     />
   </div>
-  <button type="submit" class="btn btn-outline-success">Submit</button>
+  <button
+    type="submit"
+    [disabled]="!todoForm.valid"
+    class="btn btn-outline-success"
+  >
+    Submit
+  </button>
 </form>
