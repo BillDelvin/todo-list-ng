@@ -12,43 +12,39 @@ import { Todos } from "../todo.model";
 })
 export class TodoInputComponent implements OnInit, OnDestroy {
   todoForm: FormGroup;
-  idLength: number = 1;
   paramsSubs: Subscription;
-  paramId: number;
-  id: number = 0;
+  paramId;
+  id: number;
+  idLength: number = -1;
   editMode = false;
-  todo: Todos;
+  todo;
 
   constructor(
     private todoService: TodoService,
     private route: ActivatedRoute,
     private router: Router
   ) {
+    this.paramId = this.route.snapshot.paramMap.get("id");
     this.initialForm();
   }
 
   ngOnInit() {
-    this.paramId = +this.route.snapshot.params["id"];
-
     if (this.paramId) {
       this.paramsSubs = this.route.params.subscribe((params: Params) => {
-        if (params) {
-          this.id = +params["id"];
-          this.editMode = params["id"] != null;
-          this.initialForm();
-        }
+        this.id = +params["id"];
+        this.editMode = params["id"] !== null;
+        this.initialForm();
       });
     }
   }
 
   onSubmit() {
-    if (this.editMode !== false) {
-      console.log("masuk ke edit mode");
+    if (this.editMode) {
       this.todoService.updateTodo(this.id, this.todoForm.value);
       this.editMode = false;
     } else {
       const todo: Todos = {
-        id: this.idLength++,
+        id: ++this.idLength,
         day: this.todoForm.value.day,
         activities: this.todoForm.value.activities,
       };

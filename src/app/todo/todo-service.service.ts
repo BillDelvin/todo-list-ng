@@ -35,8 +35,12 @@ export class TodoService {
   }
 
   updateTodo(id: number, todo: Todos) {
-    let findTodo = this.todos.find((todo) => todo.id === id);
-    findTodo = todo;
+    const newTodo = {
+      id,
+      day: todo.day,
+      activities: todo.activities,
+    };
+    this.todos[id] = newTodo;
     this.todosChange.next(this.todos.slice());
   }
 }
