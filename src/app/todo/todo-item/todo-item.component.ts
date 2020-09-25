@@ -27,8 +27,8 @@ export class TodoItemComponent implements OnInit, OnDestroy {
     this.todoService.deleteTodo(id);
   }
 
-  onUpdate(id: number) {
-    this.todoService.updateTodo(id);
+  onSelectUpdate(id: number) {
+    this.todoService.SelectUpdateTodo(id);
   }
 
   ngOnDestroy() {

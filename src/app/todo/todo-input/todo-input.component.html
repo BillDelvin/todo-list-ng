@@ -17,6 +17,6 @@
     [disabled]="!todoForm.valid"
     class="btn btn-outline-success"
   >
-    Submit
+    {{ !editMode ? "Create" : "Update" }}
   </button>
 </form>

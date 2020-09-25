@@ -16,7 +16,8 @@ export class TodoService {
   }
 
   getTodo(id: number) {
-    return this.todos.find((todo) => todo.id === id);
+    const getTodo = this.todos.find((todo) => todo.id === id);
+    return getTodo;
   }
 
   addTodo(todo: Todos) {
@@ -29,7 +30,13 @@ export class TodoService {
     this.todosChange.next(this.todos.slice());
   }
 
-  updateTodo(id: number) {
+  SelectUpdateTodo(id: number) {
     this.router.navigate(["/todo/edit", id]);
+  }
+
+  updateTodo(id: number, todo: Todos) {
+    let findTodo = this.todos.find((todo) => todo.id === id);
+    findTodo = todo;
+    this.todosChange.next(this.todos.slice());
   }
 }
